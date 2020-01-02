@@ -3,10 +3,10 @@ Code developed and written while completing [The Web Developer Bootcamp](https:/
 
 > The only course you need to learn web development - HTML, CSS, JS, Node, and More!
 > Throughout the course we cover tons of tools and technologies including:
-* __HTML5__
-* __CSS3__
-* __JavaScript__
-* __Bootstrap 4__
+> * __HTML5__
+> * __CSS3__
+> * __JavaScript__
+> * __Bootstrap 4__
 * SemanticUI
 * DOM Manipulation
 * __jQuery__
