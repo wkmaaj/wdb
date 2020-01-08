@@ -3,5 +3,5 @@ if($("body")) {
 }
 $("li>span").click(function() {
     // $(this).parent().css("display", "none");
-    $(this).parent().remove();
+    $(this).parent().toggleClass("completed");
 })
