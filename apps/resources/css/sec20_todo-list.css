@@ -1,0 +1,35 @@
+div#container {
+    background-color: gray;
+    text-align: center;
+    margin: 0 auto;
+    width: 360px;
+}
+
+h1#tempHeader {
+    font-family: 'Monoton', cursive;
+    font-size: 4rem;
+    margin-top: 30px;
+    margin-bottom: 0px;
+    text-align: center;
+    text-decoration: overline underline wavy;
+}
+
+h5 {
+    font-family: 'Jim Nightshade', cursive;
+    font-weight: 900;
+    margin-bottom: 30px;
+    text-align: center;
+}
+h5 > span#gv {
+    color: green;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+h5 > span#sil {
+    font-family: 'Shadows Into Light', cursive;
+}
+
+i.fas.fa-plus {
+    color: green;
+}
