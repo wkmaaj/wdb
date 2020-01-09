@@ -1,26 +1,43 @@
+body {
+    /* src: https://uigradients.com/#KyooTah*/
+    background: #544a7d;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ffd452, #544a7d);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ffd452, #544a7d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
 div#container {
-    text-align: center;
-    margin: 0 auto;
+    background-color: rgb(247, 247, 247);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+    margin: 50px auto 100px auto;
     width: 360px;
 }
 
-h1#tempHeader {
+h1#listHeader {
+    background-color: rgb(41, 128, 185);
+    color: rgb(255, 255, 255);
+    margin: 0;
+    padding: 10px 20px;
+    text-align: left;
+    text-transform: uppercase;
+}
+h1#pageHeader {
     font-family: 'Monoton', cursive;
     font-size: 4rem;
     margin-top: 30px;
     margin-bottom: 0px;
     text-align: center;
-    text-decoration: overline underline wavy;
+    text-decoration: underline wavy;
 }
 
 h5 {
     font-family: 'Jim Nightshade', cursive;
     font-weight: 900;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     text-align: center;
 }
 h5 > span#gv {
-    color: green;
+    color: rgb(41, 128, 185);
     font-family: 'Great Vibes', cursive;
     font-size: 1.5rem;
     text-transform: uppercase;
@@ -29,8 +46,59 @@ h5 > span#sil {
     font-family: 'Shadows Into Light', cursive;
 }
 
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    background-color: rgb(255, 255, 255);
+    color: rgb(102, 102, 102);
+    height: 40px;
+    line-height: 40px;
+
+}
+li:nth-child(2n) {
+    background-color: rgb(247, 247, 247);
+}
+li:hover > span {
+    opacity: 1.0;
+    width: 40px;
+}
+
 i.fas.fa-plus {
-    color: green;
+    float: right;
+}
+
+span.icon {
+    background-color: rgb(231, 76, 60);
+    color: rgb(255, 255, 255);
+    display: inline-block;
+    height: 40px;
+    margin-right: 20px;
+    /* opacity property addresses the lingering presence of the icon after setting the span's width to 0 */
+    opacity: 0;
+    text-align: center;
+    transition: 0.2s linear;
+    width: 0;
+}
+
+input {
+    background-color: rgb(247, 247, 247);
+    border: 3px solid rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    color: rgb(41, 128, 185);
+    font-size: 18px;
+    padding: 13px 13px 13px 20px;
+    width: 100%;
+}
+input:focus {
+    background-color: rgb(255, 255, 255);
+    border: 3px solid rgb(41, 128, 185);
+    outline: none;
 }
 
 .completed {
