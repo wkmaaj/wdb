@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="./resources/css/lib/googlefonts/gfonts.css" type="text/css">        
+        <link rel="stylesheet" href="./resources/css/sec21_patatap-clone.css" type="text/css">
+        <title>Patatap Clone App</title>
+        <script src="./resources/js/lib/paper-full-0.12.4.min.js" type="text/javascript"></script>
+        <script type="text/paperscript" canvas="myCanvas">
+            // - create a paper.js Path (obj) to draw a line
+            var path = new Path();
+
+            // - give the stroke a color
+            // path.strokeColor = "green";
+            
+            // - start point for the line new Point(x, y)
+            // var start = new Point(500, 500);
+            
+            // - move to start and draw a line from there
+            // path.moveTo(start);
+
+            // - end point of line will be at [200, 80]
+            // path.lineTo(start + [ 100, -20 ]);
+            // path.lineTo([750, 250]);
+
+            var colors = ["red", "orange", "blue", "purple", "white", "grey", "green", "yellow", "brown", "aqua"];
+            var radius = 10;
+            var useX = true;
+            function onKeyDown(event) {
+                var color;
+                var x = Math.floor((Math.random() * colors.length));
+                var y = Math.floor((Math.random() * colors.length));
+                if(useX) {
+                    color = colors[x];
+                } else {
+                    color = colors[y];
+                }
+                useX =! useX;
+                console.log("useX value set to: " + useX);
+                var circle = new Path.Circle(new Point((100 * x), (100 * y)), radius);
+                circle.fillColor = color;
+                console.log("Generated circle: {(x=" + (100*x) + ", y=" + (100*y) + ", col=" + color + "}");
+            }
+
+            function onKeyUp(event) {
+                var maxPnt = new Point(view.size.width, view.size.height);
+                var rndPnt = Point.random();
+                var pnt = maxPnt * rndPnt;
+                console.log("rndPnt=" + rndPnt + ", maxPnt=" + maxPnt + ", pnt=" + pnt);
+                new Path.Circle(pnt, 20).fillColor = "purple";
+                console.log("pnt: (" + view.size.width + ", " + view.size.height + "), circles.length=" + circles.length);
+            }
+
+        </script>
+    </head>
+    <body>
+        <canvas id="myCanvas" rezise></canvas>
+        <script src="./resources/js/sec21_patatap-clone.js" type="text/javascript"></script>
+    </body>
+</html>
