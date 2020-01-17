@@ -24,6 +24,7 @@
             // path.lineTo(start + [ 100, -20 ]);
             // path.lineTo([750, 250]);
 
+            var circles = new Array();
             var colors = ["red", "orange", "blue", "purple", "white", "grey", "green", "yellow", "brown", "aqua"];
             var radius = 10;
             var useX = true;
@@ -48,10 +49,19 @@
                 var rndPnt = Point.random();
                 var pnt = maxPnt * rndPnt;
                 console.log("rndPnt=" + rndPnt + ", maxPnt=" + maxPnt + ", pnt=" + pnt);
-                new Path.Circle(pnt, 20).fillColor = "purple";
+                var circle = new Path.Circle(pnt, 20);
+                circle.fillColor = "green";
+                circles.push(circle);
                 console.log("pnt: (" + view.size.width + ", " + view.size.height + "), circles.length=" + circles.length);
             }
 
+            function onFrame(event) {
+                if(circles.length !== 0) {
+                    circles.forEach(function(circle) {
+                        circle.fillColor.hue += 1;
+                    })
+                }
+            }
         </script>
     </head>
     <body>
