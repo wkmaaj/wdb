@@ -1,0 +1,14 @@
+{
+  "name": "express-basics-exercise",
+  "version": "0.0.1-SNAPSHOT",
+  "description": "Module 270 exercise from Web Developer Bootcamp UDemy course",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Big Willay",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

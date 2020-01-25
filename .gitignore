@@ -7,6 +7,10 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+# npm packages
+node_modules/
+package-lock.json
+
 # Package Files #
 *.jar
 *.war
