@@ -1,24 +1,29 @@
-let express = require('express');
-let app = express();
+var express = require('express');
+var app = express();
+var animalSounds = {
+	cat: "Meow",
+	cow: "Moo",
+	dog: "Woof Woof!",
+	goldfish: "...",
+	pig: "Oink"
+};
 
 app.get("/", function(req, res) {
 	res.send("Hi there, welcome to my assignment!");
 });
 
 app.get("/speak/:animal", function(req, res) {
-	let animalSound = "";
-	if(req.params.animal === "cow") {
-		animalSound = "Moo";
-	} else if(req.params.animal === "dog") {
-		animalSound = "Woof Woof!";
-	} else if(req.params.animal === "pig") {
-		animalSound = "Oink";
+	let animal = req.params.animal.toLowerCase();
+	let sound = "";
+	
+	if(animalSounds[animal]) {
+		sound = animalSounds[animal];
 	}
 	else {
-		animalSound = "WTF mate?!";
+		sound = "WTF mate!?!";
 	}
 
-	res.send("The " + req.params.animal + " says \'" + animalSound + "\'");
+	res.send("The " + animal + " says \'" + sound + "\'");
 });
 
 app.get("/repeat/:wordToRepeat/:numOfRepetitions", function(req, res) {
