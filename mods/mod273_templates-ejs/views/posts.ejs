@@ -1,0 +1,6 @@
+<%- include("partials/header") %>
+		<h1>POST(s)</h1>
+<% postsVar.forEach(function(post) { %>
+		<li><%= post.title %> by <strong><%= post.author %></strong></li>
+<% }) %>
+<%- include("partials/footer") %>
