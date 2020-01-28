@@ -1,7 +1,44 @@
 body {
 	background-color: aqua;
 }
+li:hover {
+	border: 3px dotted purple;
+	font-family: 'Great Vibes', cursive;
+	font-size: 2rem;
+	font-weight: bolder;
+	width: 50%;
+}
+span#searchTerm, h3#notFound {
+	font-family: 'Monofett', cursive;
+	font-size: 4rem;
+	font-weight: bolder;
+}
+span#notFoundTerm {
+	font-family: 'Indie Flower', cursive;
+	font-size: 1.75rem;
+	font-weight: bold;
+}
 
+.container#jumbotron {
+	background-color: cornflowerblue;
+	margin: auto 0;
+	max-width: 100%;
+	padding: 5px 30px 5px;
+}
+.container > .jumbotron {
+	background-color: darkslateblue;
+}
+.container > .jumbotron > h1 {
+	color: whitesmoke;
+	font-family: 'Permanent Marker', cursive;
+	font-size: 3rem;
+	font-weight: bolder;
+	text-align: center;
+}
+
+#disclaimer > a {
+	font-weight: bolder;
+}
 #searchAgain {
 	margin: 15px auto;
 }

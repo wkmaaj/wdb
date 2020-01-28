@@ -1,5 +1,5 @@
 <%- include("partials/header") %>
-		<h1><em><%= search %></em> Results Page</h1>
+		<h3><span id="searchTerm"><em><%= search %></em></span> Results Page</h3>
 <% results["Search"].forEach(function(result) { %>
 		<li><strong><%= result["Title"] %></strong> - <span id="year"><%= result["Year"] %></span></li>
 <% }); %>
