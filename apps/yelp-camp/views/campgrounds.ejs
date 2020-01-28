@@ -1,0 +1,18 @@
+<%- include("partials/header") %>
+		<h1 id="cgrounds">Campgrounds <i class="fas fa-campground"></i></h1>
+		<!-- <p><i class="fas fa-diagnoses"></i> Currently under construction... <i class="fab fa-accessible-icon"></i></p> -->
+		<div class="container-fluid">
+<% if(campgrounds.length > 0) { %>
+			<div class="row">
+<% var counter = 0; %>
+<% campgrounds.forEach((campground) => { %>
+<% counter++; %>
+				<div class="col-12 col-sm-6 col-lg-4 col-xl-3 mt-2 mb-3">
+					<h4>Campground #<%= counter %> - <%= campground.name %></h4>
+					<img src="<%= campground.image %>" alt="Image Unavailable" class="img-fluid">
+				</div>
+<% }); %>
+			</div>
+<% }; %>
+		</div>
+<%- include("partials/footer") %>
