@@ -1,0 +1,7 @@
+<%- include("partials/header") %>
+		<h1><em><%= search %></em> Results Page</h1>
+<% results["Search"].forEach(function(result) { %>
+		<li><strong><%= result["Title"] %></strong> - <span id="year"><%= result["Year"] %></span></li>
+<% }); %>
+<%- include("partials/searchAgain") %>
+<%- include("partials/footer") %>

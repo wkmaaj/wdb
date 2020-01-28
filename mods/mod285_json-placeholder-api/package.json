@@ -1,0 +1,17 @@
+{
+  "name": "json-placeholder-api",
+  "version": "0.0.1-SNAPSHOT",
+  "description": "Module 285",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jaradat-pdb",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "locus": "^2.0.0"
+  }
+}
