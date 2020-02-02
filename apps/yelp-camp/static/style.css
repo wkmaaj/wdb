@@ -18,6 +18,10 @@ h1 {
 	color: darkolivegreen;
 	font-family: 'Permanent Marker', cursive;
 }
+#cgrounds-row {
+	display: flex;
+	flex-wrap: wrap;
+}
 #index {
 	color: darkgreen;
 	font-family: 'Monofett', cursive;
