@@ -4,6 +4,12 @@ const app = express();
 const campgrounds = [
 	{name: "Salmon Creek", image: "https://farm9.staticflickr.com/8002/7299820870_e78782c078.jpg"},
 	{name: "Granite Hill", image: "https://farm5.staticflickr.com/4111/35744288656_a4e135fa8e.jpg"},
+	{name: "Mountain Goat's Rest", image: "https://farm4.staticflickr.com/3021/2386124661_843479d1c8.jpg"},
+	{name: "Salmon Creek", image: "https://farm9.staticflickr.com/8002/7299820870_e78782c078.jpg"},
+	{name: "Granite Hill", image: "https://farm5.staticflickr.com/4111/35744288656_a4e135fa8e.jpg"},
+	{name: "Mountain Goat's Rest", image: "https://farm4.staticflickr.com/3021/2386124661_843479d1c8.jpg"},
+	{name: "Salmon Creek", image: "https://farm9.staticflickr.com/8002/7299820870_e78782c078.jpg"},
+	{name: "Granite Hill", image: "https://farm5.staticflickr.com/4111/35744288656_a4e135fa8e.jpg"},
 	{name: "Mountain Goat's Rest", image: "https://farm4.staticflickr.com/3021/2386124661_843479d1c8.jpg"}
 ];
 
