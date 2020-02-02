@@ -22,6 +22,11 @@ h1 {
 	color: darkgreen;
 	font-family: 'Monofett', cursive;
 }
+#trademark {
+	font-family: 'Permanent Marker', cursive;
+	font-size: 1.25rem;
+	font-weight: bold;
+}
 
 @media(max-width: 696px) {
 	i.fas.fa-campground {
