@@ -2,9 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const campgrounds = [
-	{name: "Salmon Creek", image: "https://pixabay.com/get/57e1d14a4e52ae14f6da8c7dda793f7f1636dfe2564c704c7d2f7add9148c551_340.jpg"},
-	{name: "Granite Hill", image: "https://pixabay.com/get/55e8dc404f5aab14f6da8c7dda793f7f1636dfe2564c704c7d2f7add9148c551_340.jpg"},
-	{name: "Mountain Goat's Rest", image: "https://pixabay.com/get/57e8d0424a5bae14f6da8c7dda793f7f1636dfe2564c704c7d2f7add9148c551_340.jpg"}
+	{name: "Salmon Creek", image: "https://farm9.staticflickr.com/8002/7299820870_e78782c078.jpg"},
+	{name: "Granite Hill", image: "https://farm5.staticflickr.com/4111/35744288656_a4e135fa8e.jpg"},
+	{name: "Mountain Goat's Rest", image: "https://farm4.staticflickr.com/3021/2386124661_843479d1c8.jpg"}
 ];
 
 app.use(bodyParser.urlencoded({extended: true}));
