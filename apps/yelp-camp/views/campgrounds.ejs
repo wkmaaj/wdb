@@ -1,21 +1,30 @@
 <%- include("partials/header") %>
-		<h1 id="cgrounds">Campgrounds <i class="fas fa-campground"></i></h1>
-		<!-- <p><i class="fas fa-diagnoses"></i> Currently under construction... <i class="fab fa-accessible-icon"></i></p> -->
 		<div class="container-fluid">
+			<header class="jumbotron bg-warning">
+				<div class="container">
+					<h1 id="cgrounds">YelpCamp Grounds <i class="fas fa-campground"></i></h1>
+					<p>View our handpicked campgrounds from all over the world.</p>
+					<p>
+						<a class="btn btn-success btn-sm" href="/campgrounds/new">Add New Campground</a>
+					</p>
+				</div>
+			</header>
 <% if(campgrounds.length > 0) { %>
-			<div class="row">
+			<div class="row text-center" id="cgrounds-row">
 <% var counter = 0; %>
 <% campgrounds.forEach((campground) => { %>
 <% counter++; %>
-				<div class="col-12 col-sm-6 col-lg-4 col-xl-3 mt-2 mb-3">
-					<h4>Campground #<%= counter %> - <%= campground.name %></h4>
-					<img src="<%= campground.image %>" alt="Image Unavailable" class="img-fluid">
+				<div class="col-sm-6 col-lg-4 col-xl-3 mt-2 mb-3">
+					<!-- TODO: convert thumbnail to bootstrap v4 card class -->
+					<div class="thumbnail">
+						<img src="<%= campground.image %>" alt="Image Unavailable" class="img-fluid">
+						<div class="caption">
+							<h4>Campground #<%= counter %> - <%= campground.name %></h4>
+						</div>
+					</div>
 				</div>
 <% }); %>
 			</div>
 <% }; %>
-		</div>
-		<div class="mt-5">
-			<a class="btn btn-primary btn-sm" href="/campgrounds/new">Add New Campground</a>
 		</div>
 <%- include("partials/footer") %>
