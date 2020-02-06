@@ -40,7 +40,7 @@ h1 {
 	font-weight: bold;
 }
 
-@media(max-width: 696px) {
+@media(max-width: 1041px) {
 	i.fas.fa-campground {
 		display: none;
 	}
