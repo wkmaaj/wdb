@@ -9,7 +9,8 @@ mongoose.connect("mongodb://localhost:27017/ycamp", {
 
 const campgroundSchema = new mongoose.Schema({
 	name: String,
-	image: String
+	image: String,
+	desc: String
 });
 const Campground = mongoose.model("Campground", campgroundSchema);
 
@@ -39,7 +40,8 @@ app.get("/campgrounds", (req, res) => {
 app.post("/campgrounds", (req, res) => {
 	Campground.create({
 		name: req.body.name,
-		image: req.body.image
+		image: req.body.image,
+		desc: req.body.desc
 	}, function(err, campground) {
 		if(err) {
 			console.error("Unsuccessful save operation\n" + err);
@@ -53,6 +55,18 @@ app.post("/campgrounds", (req, res) => {
 
 app.get("/campgrounds/new", (req, res) => {
 	res.render("new");
+});
+
+app.get("/campgrounds/:id", (req, res) => {
+	Campground.findById(req.url.split("/campgrounds/")[1], function(err, campground) {
+		if(err) {
+			console.error("Unsuccessful query operation\n" + err);
+		}
+		else {
+			console.log("Successful query operation, " + campground.name + " returned");
+			res.render("campground", {campground: campground});
+		}
+	});
 });
 
 app.listen(3000, function() {
