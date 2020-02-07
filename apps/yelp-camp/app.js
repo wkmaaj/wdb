@@ -1,18 +1,19 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
-const campgrounds = [
-	{name: "Salmon Creek", image: "https://farm9.staticflickr.com/8002/7299820870_e78782c078.jpg"},
-	{name: "Granite Hill", image: "https://farm5.staticflickr.com/4111/35744288656_a4e135fa8e.jpg"},
-	{name: "Mountain Goat's Rest", image: "https://farm4.staticflickr.com/3021/2386124661_843479d1c8.jpg"},
-	{name: "Salmon Creek", image: "https://farm9.staticflickr.com/8002/7299820870_e78782c078.jpg"},
-	{name: "Granite Hill", image: "https://farm5.staticflickr.com/4111/35744288656_a4e135fa8e.jpg"},
-	{name: "Mountain Goat's Rest", image: "https://farm4.staticflickr.com/3021/2386124661_843479d1c8.jpg"},
-	{name: "Salmon Creek", image: "https://farm9.staticflickr.com/8002/7299820870_e78782c078.jpg"},
-	{name: "Granite Hill", image: "https://farm5.staticflickr.com/4111/35744288656_a4e135fa8e.jpg"},
-	{name: "Mountain Goat's Rest", image: "https://farm4.staticflickr.com/3021/2386124661_843479d1c8.jpg"}
-];
+const express = require('express'),
+	bodyParser = require('body-parser'),
+	mongoose = require('mongoose');
 
+mongoose.connect("mongodb://localhost:27017/ycamp", {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+});
+
+const campgroundSchema = new mongoose.Schema({
+	name: String,
+	image: String
+});
+const Campground = mongoose.model("Campground", campgroundSchema);
+
+const app = express()
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("static"));
 app.use(express.static("../resources/css/lib"));
@@ -24,13 +25,29 @@ app.get("/:var((home|index)(.html|.ejs)?)?", (req, res) => {
 });
 
 app.get("/campgrounds", (req, res) => {
-	res.render("campgrounds", {campgrounds: campgrounds});
+	Campground.find({}, function(err, campgrounds) {
+		if(err) {
+			console.error("Unsuccessful query operation\n" + err);
+		}
+		else {
+			console.log("Successful query operation, " + campgrounds.length + " campgrounds returned");
+			res.render("campgrounds", {campgrounds: campgrounds});
+		}
+	});
 });
 
 app.post("/campgrounds", (req, res) => {
-	req.body.name;
-	req.body.image;
-	campgrounds.push({name: req.body.name, image: req.body.image});
+	Campground.create({
+		name: req.body.name,
+		image: req.body.image
+	}, function(err, campground) {
+		if(err) {
+			console.error("Unsuccessful save operation\n" + err);
+		}
+		else {
+			console.log("Successful save operation:\n" + campground);
+		}
+	});
 	res.redirect("/campgrounds");
 });
 
