@@ -3,6 +3,7 @@
 
 ## RESTful Routes
 Following common convention, **C**reate, **R**ead, **U**pdate, and **D**elete (or *Destroy*) operations (oftentimes referred to simply as **CRUD**) can be implemented in a standard, programmable fashion and ultimately exposed to other applications via an API interface.
+
 Name | Path | HTTP Verb
 ---- | ---- | ---------
 index | /blogs | GET
