@@ -1,0 +1,13 @@
+<%- include("partials/header") %>
+		<div class="container-fluid">
+			<header class="jumbotron bg-warning text-center">
+				<div class="container">
+					<h1 id="cgrounds"><%= campground.name %></h1>
+					<p><%= campground.desc %></p>
+				</div>
+			</header>
+			<div class="d-flex flex-row justify-content-center">
+				<img src="<%= campground.image %>" alt="Image Unavailable" class="img-fluid">
+			</div>
+		</div>
+<%- include("partials/footer") %>
