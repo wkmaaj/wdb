@@ -1,0 +1,27 @@
+body {
+	padding-top: 70px;
+}
+
+h1.display-2 {
+	background-color: rgb(218, 165, 32);
+	font-family: 'Indie Flower', cursive;
+}
+i.fas.fa-passport {
+	color: rgb(218, 165, 32);
+	font-size: 2rem;
+}
+
+.navbar-brand {
+	font-family: 'Monofett', cursive;
+	font-size: 2rem;
+}
+.nav-link {
+	font-family: 'Permanent Marker', cursive;
+	font-size: 1.25rem;
+}
+
+#new-blog-post {
+	/* margin: auto 30px; */
+	text-align: center;
+	/* width: 50%; */
+}
