@@ -1,3 +1,26 @@
 <%- include("partials/header") %>
-
+<% if(blogs.length > 0) { %>
+		<div class="container-fluid mt-2">
+<% blogs.forEach((blog) => { %>
+			<div class="row text-center">
+				<h3 class="my-0 px-5"><%= blog.title %></h3>
+			</div>
+			<div class="row text-center bg-dark rounded mb-4 mx-0 py-2">
+				<div class="col-6">
+					<img src="<%= blog.image %>" alt="Image Unavailable" class="img-fluid rounded">
+				</div>
+				<div class="d-flex flex-column col-6 justify-content-between">
+					<div class="row p-2">
+						<p>
+							<p class="text-light"><%= blog.body.substring(0, 100) %>...</p>
+						</p>
+					</div>
+					<div class="row justify-content-end py-3 pr-3">
+						<a href="/blogs/<%= blog._id %>" class="btn btn-warning btn-sm">Read More</a>
+					</div>
+				</div>
+			</div>
+<% }); %>
+		</div>
+<% }; %>
 <%- include("partials/footer") %>
