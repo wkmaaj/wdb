@@ -1,13 +1,17 @@
 body {
-	padding-top: 70px;
+	background: #DAA520;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #F3F9A7, #DAA520);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #F3F9A7, #DAA520); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+	padding-top: 90px;
 }
 
 h1.display-2 {
-	background-color: rgb(218, 165, 32);
 	font-family: 'Indie Flower', cursive;
+	font-weight: 900;
 }
 i.fas.fa-passport {
-	color: rgb(218, 165, 32);
+	color: #DAA520;
 	font-size: 2rem;
 }
 
@@ -20,8 +24,25 @@ i.fas.fa-passport {
 	font-size: 1.25rem;
 }
 
+#blog-content {
+	margin: 0 5px;
+}
+#hide-blog-created {
+	display: none;
+}
 #new-blog-post {
-	/* margin: auto 30px; */
 	text-align: center;
-	/* width: 50%; */
+}
+#show-blog-body {
+	border: 3px dotted #000000;
+
+}
+#show-blog-body:hover #hide-blog-created {
+	display: inline;
+	font-family: "Roboto Mono", monospace;
+	font-size: 0.75rem;
+	font-weight: 700;
+}
+#show-blog-title {
+	text-decoration: underline wavy;
 }
