@@ -46,3 +46,6 @@ i.fas.fa-passport {
 #show-blog-title {
 	text-decoration: underline wavy;
 }
+#show-delete-inline {
+	display: inline;
+}
