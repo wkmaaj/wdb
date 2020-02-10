@@ -1,0 +1,20 @@
+<%- include("partials/header") %>
+		<div class="container-fluid">
+			<h1 class="display-2 text-center mb-4">New Blog</h1>
+			<div class="d-flex flex-row justify-content-center bg-dark py-3" id="new-blog-post">
+				<form action="/blogs" method="POST">
+					<div class="form-group">
+						<input type="text" class="form-control" name="blog[title]" placeholder="title" required>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" name="blog[image]" placeholder="image url">
+					</div>
+					<div class="form-group">
+						<label class="text-light">Blog Content</label>
+						<textarea name="blog[body]" class="form-control" cols="30" rows="10" required></textarea>
+					</div>
+					<input type="submit" class="btn btn-success btn-lg" value="Post">
+				</form>
+			</div>
+		</div>
+<%- include("partials/footer") %>
