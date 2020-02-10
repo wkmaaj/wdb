@@ -1,4 +1,4 @@
-# __BLOGGO.d__
+# __blogGO__
 #### _A **REST**ful blogging application_
 
 ## RESTful Routes
