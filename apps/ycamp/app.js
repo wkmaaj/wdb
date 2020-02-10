@@ -17,8 +17,8 @@ const Campground = mongoose.model("Campground", campgroundSchema);
 const app = express()
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("static"));
-app.use(express.static("../resources/css/lib"));
-app.use(express.static("../resources/js/lib"));
+app.use(express.static("../../resources/css/lib"));
+app.use(express.static("../../resources/js/lib"));
 app.set("view engine", "ejs");
 
 app.get("/:var((home|index)(.html|.ejs)?)?", (req, res) => {

@@ -6,8 +6,8 @@ const bodyParser = require("body-parser"),
 	app = express();
 
 app.set("view engine", "ejs");
-app.use(express.static("../resources/css/lib"));
-app.use(express.static("../resources/js/lib"));
+app.use(express.static("../../resources/css/lib"));
+app.use(express.static("../../resources/js/lib"));
 app.use(express.static("static"));
 app.use(bodyParser.urlencoded({
 	extended: true
