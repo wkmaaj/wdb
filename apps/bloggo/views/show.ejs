@@ -9,6 +9,10 @@
 						<span id="hide-blog-created"><%= blog._id %> created on <%= blog.created.toDateString() %></span>
 					</p>
 				</div>
+				<a href="/blogs/<%= blog._id %>/edit" class="ui positive basic button">Edit</a>
+				<form action="/blogs/<%= blog._id %>?_method=DELETE" method="POST" id="show-delete-inline">
+					<button class="ui inverted negative basic button">Delete</button>
+				</form>
 			</div>
 		</div>
 <%- include("partials/footer") %>
