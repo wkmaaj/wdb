@@ -1,5 +1,6 @@
 const bodyParser = require("body-parser"),
 	express = require("express"),
+	expressSanitizer = require("express-sanitizer");
 	methodOverride = require("method-override");
 	mongoose = require("mongoose"),
 	app = express();
@@ -11,6 +12,7 @@ app.use(express.static("static"));
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
+app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 
 mongoose.connect("mongodb://localhost:27017/bloggo", {
@@ -48,6 +50,7 @@ app.get("/blogs/new", (req, res) => {
 });
 
 app.post("/blogs", (req, res) => {
+	req.body.blog.body = req.sanitize(req.body.blog.body);
 	Bloggo.create(req.body.blog, function(err, blog) {
 		if(err) {
 			console.error("Unsuccessful save operation\n" + err);
@@ -87,6 +90,7 @@ app.get("/blogs/:id/edit", (req, res) => {
 });
 
 app.put("/blogs/:id", (req, res) => {
+	req.body.blog.body = req.sanitize(req.body.blog.body);
 	Bloggo.findByIdAndUpdate(req.params.id, req.body.blog, (err, updatedBlog) => {
 		if(err) {
 			console.error("Unsuccessful update operation\n" + err);
