@@ -1,18 +1,12 @@
 const express = require('express'),
 	bodyParser = require('body-parser'),
-	mongoose = require('mongoose');
+	mongoose = require('mongoose'),
+	Campground = require('./models/campground');
 
 mongoose.connect("mongodb://localhost:27017/ycamp", {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
 });
-
-const campgroundSchema = new mongoose.Schema({
-	name: String,
-	image: String,
-	desc: String
-});
-const Campground = mongoose.model("Campground", campgroundSchema);
 
 const app = express()
 app.use(bodyParser.urlencoded({extended: true}));
