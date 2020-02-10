@@ -1,5 +1,6 @@
 const bodyParser = require("body-parser"),
 	express = require("express"),
+	methodOverride = require("method-override");
 	mongoose = require("mongoose"),
 	app = express();
 
@@ -10,6 +11,7 @@ app.use(express.static("static"));
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
+app.use(methodOverride("_method"));
 
 mongoose.connect("mongodb://localhost:27017/bloggo", {
 	useNewUrlParser: true,
@@ -71,6 +73,41 @@ app.get("/blogs/:id", (req, res) => {
 	});
 });
 
+app.get("/blogs/:id/edit", (req, res) => {
+	Bloggo.findById(req.params.id, (err, blog) => {
+		if(err) {
+			console.error("Unsuccessful query operation\n" + err);
+			res.redirect("/blogs/" + req.params.id);
+		}
+		else {
+			console.log("Successful query operation, returning " + blog.title + " blog post");
+			res.render("edit", {blog: blog});
+		}
+	});
+});
+
+app.put("/blogs/:id", (req, res) => {
+	Bloggo.findByIdAndUpdate(req.params.id, req.body.blog, (err, updatedBlog) => {
+		if(err) {
+			console.error("Unsuccessful update operation\n" + err);
+			res.redirect("/blogs");
+		}
+		else {
+			console.log("Successful update operation for " + updatedBlog.title + " blog post");
+			res.redirect("/blogs/" + req.params.id);
+		}
+	});
+});
+
+app.delete("/blogs/:id", (req, res) => {
+	Bloggo.findByIdAndRemove(req.params.id, (err) => {
+		if(err) {
+			console.error("Unsuccessful destroy operation\n" + err);
+		}
+		res.redirect("/blogs");
+	});
+});
+
 app.listen(3000, function() {
 	console.log("blogGO is RESTed, up, and running on port 3000");
-})
+});
