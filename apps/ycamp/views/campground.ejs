@@ -9,5 +9,13 @@
 			<div class="d-flex flex-row justify-content-center">
 				<img src="<%= campground.image %>" alt="Image Unavailable" class="img-fluid">
 			</div>
+			<div class="mt-3">
+				<h4><em>Comments:</em></h4>
+<% campground.comments.forEach((comment) => {%>
+				<div>
+					<%= comment.text %> - <strong><%= comment.author %></strong>
+				</div>
+<% }); %>
+			</div>
 		</div>
 <%- include("partials/footer") %>
