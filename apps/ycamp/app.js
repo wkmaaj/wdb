@@ -1,12 +1,14 @@
-const express = require('express'),
-	bodyParser = require('body-parser'),
-	mongoose = require('mongoose'),
-	Campground = require('./models/campground');
+const express = require("express"),
+	bodyParser = require("body-parser"),
+	mongoose = require("mongoose"),
+	Campground = require("./models/campground")
+	seeds = require("./seeds");
 
 mongoose.connect("mongodb://localhost:27017/ycamp", {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
 });
+seeds();
 
 const app = express()
 app.use(bodyParser.urlencoded({extended: true}));
@@ -52,7 +54,7 @@ app.get("/campgrounds/new", (req, res) => {
 });
 
 app.get("/campgrounds/:id", (req, res) => {
-	Campground.findById(req.url.split("/campgrounds/")[1], function(err, campground) {
+	Campground.findById(req.url.split("/campgrounds/")[1]).populate("comments").exec((err, campground) => {
 		if(err) {
 			console.error("Unsuccessful query operation\n" + err);
 		}
