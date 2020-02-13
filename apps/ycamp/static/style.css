@@ -22,6 +22,9 @@ h1 {
 	width: 30%;
 }
 
+#cground-img {
+	width: 100%;
+}
 #cgrounds {
 	color: darkolivegreen;
 	font-family: 'Permanent Marker', cursive;
