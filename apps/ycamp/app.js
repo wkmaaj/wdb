@@ -1,7 +1,8 @@
 const express = require("express"),
 	bodyParser = require("body-parser"),
 	mongoose = require("mongoose"),
-	Campground = require("./models/campground")
+	Campground = require("./models/campground"),
+	Comment = require("./models/comment"),
 	seeds = require("./seeds");
 
 mongoose.connect("mongodb://localhost:27017/ycamp", {
@@ -18,7 +19,7 @@ app.use(express.static("../../resources/js/lib"));
 app.set("view engine", "ejs");
 
 app.get("/:var((home|index)(.html|.ejs)?)?", (req, res) => {
-	res.render("index");
+	res.render("landing");
 });
 
 app.get("/campgrounds", (req, res) => {
@@ -28,7 +29,7 @@ app.get("/campgrounds", (req, res) => {
 		}
 		else {
 			console.log("Successful query operation, " + campgrounds.length + " campgrounds returned");
-			res.render("campgrounds", {campgrounds: campgrounds});
+			res.render("campgrounds/index", {campgrounds: campgrounds});
 		}
 	});
 });
@@ -46,11 +47,11 @@ app.post("/campgrounds", (req, res) => {
 			console.log("Successful save operation:\n" + campground);
 		}
 	});
-	res.redirect("/campgrounds");
+	res.redirect("campgrounds/index");
 });
 
 app.get("/campgrounds/new", (req, res) => {
-	res.render("new");
+	res.render("campgrounds/new");
 });
 
 app.get("/campgrounds/:id", (req, res) => {
@@ -60,9 +61,41 @@ app.get("/campgrounds/:id", (req, res) => {
 		}
 		else {
 			console.log("Successful query operation, " + campground.name + " returned");
-			res.render("campground", {campground: campground});
+			res.render("campgrounds/show", {campground: campground});
 		}
 	});
+});
+
+app.get("/campgrounds/:id/comments/new", (req, res) => {
+	Campground.findById(req.params.id, (err, campground) => {
+		if(err) {
+			console.error("Unsuccessful query operation\n" + err);
+		}
+		else {
+			res.render("comments/new", {campground: campground});
+		}
+	})
+});
+
+app.post("/campgrounds/:id/comments", (req, res) => {
+	Campground.findById(req.params.id, (err, campground) => {
+		if(err) {
+			console.error("Unsuccessful query operation\n" + err);
+			res.redirect("/campgrounds");
+		}
+		else {
+			Comment.create(req.body.comment, (err, comment) => {
+				if(err) {
+					console.error("Unsuccessful save operation\n" + err);
+				}
+				else {
+					campground.comments.push(comment);
+					campground.save();
+					res.redirect("/campgrounds/" + campground._id);
+				}
+			});
+		}
+	})
 });
 
 app.listen(3000, function() {
