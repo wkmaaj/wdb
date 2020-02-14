@@ -3,10 +3,11 @@ const express = require("express"),
 	mongoose = require("mongoose"),
 	passport = require("passport"),
 	LocalStrategy = require("passport-local"),
+	methodOverride = require("method-override"),
+	seeds = require("./seeds"),
 	Campground = require("./models/campground"),
 	Comment = require("./models/comment"),
 	User = require("./models/user"),
-	seeds = require("./seeds"),
 	commentsRoutes = require("./routes/comments"),
 	campgroundsRoutes = require("./routes/campgrounds"),
 	indexRoutes = require("./routes/index");
@@ -23,6 +24,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("static"));
 app.use(express.static("../../resources/css/lib"));
 app.use(express.static("../../resources/js/lib"));
+app.use(methodOverride("_method"));
 app.use(require("express-session")({
 	secret: "google whatever you want",
 	resave: false,
