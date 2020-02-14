@@ -23,7 +23,12 @@
 								<h6 class="card-subtitle mb-2 text-muted">Submitted by <%= campground.author.username %></h6>
 							<% }; %>
 							<p class="card-text px-2"><%= campground.desc %></p>
-							<a href="/campgrounds/<%= campground._id %>/edit" class="card-link btn btn-warning hyper-btn">Edit</a>
+							<div class="d-flex flex-row justify-content-around">
+								<a href="/campgrounds/<%= campground._id %>/edit" class="card-link btn btn-warning hyper-btn">Edit</a>
+								<form action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST" class="inline-form">
+									<button class="btn btn-danger hyper-btn">Delete</button>
+								</form>
+							</div>
 						</div>
 					</div>
 					<div class="card mt-3 bg-secondary text-light">
