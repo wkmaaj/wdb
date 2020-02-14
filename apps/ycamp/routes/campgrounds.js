@@ -14,11 +14,15 @@ router.get("/", (req, res) => {
 	});
 });
 
-router.post("/", (req, res) => {
+router.post("/", isLoggedIn, (req, res) => {
 	Campground.create({
 		name: req.body.name,
 		image: req.body.image,
-		desc: req.body.desc
+		desc: req.body.desc,
+		author: {
+			id: req.user._id,
+			username: req.user.username
+		}
 	}, function(err, campground) {
 		if(err) {
 			console.error("Unsuccessful save operation\n" + err);
@@ -27,10 +31,10 @@ router.post("/", (req, res) => {
 			console.log("Successful save operation:\n" + campground);
 		}
 	});
-	res.redirect("campgrounds/index");
+	res.redirect("/");
 });
 
-router.get("/new", (req, res) => {
+router.get("/new", isLoggedIn, (req, res) => {
 	res.render("campgrounds/new");
 });
 
@@ -45,5 +49,12 @@ router.get("/:id", (req, res) => {
 		}
 	});
 });
+
+function isLoggedIn(req, res, next) {
+	if(req.isAuthenticated()) {
+		return next();
+	}
+	res.redirect("/login");
+};
 
 module.exports = router;
