@@ -21,6 +21,9 @@ h1 {
 	text-align: center;
 	width: 30%;
 }
+.hyper-btn {
+	width: 18rem;
+}
 
 #cground-img {
 	width: 100%;
