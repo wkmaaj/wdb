@@ -24,6 +24,9 @@ h1 {
 .hyper-btn {
 	width: 18rem;
 }
+.inline-form {
+	display: inline;
+}
 
 #cground-img {
 	width: 100%;
