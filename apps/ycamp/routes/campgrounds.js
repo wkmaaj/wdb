@@ -56,11 +56,11 @@ router.get("/:id/edit", isAuthorizedToModifyCampground, (req, res) => {
 	});
 });
 
-router.put("/:id", (req, res) => {
+router.put("/:id", isAuthorizedToModifyCampground, (req, res) => {
 	Campground.findByIdAndUpdate(req.params.id, req.body.campground, (err, campground) => {
 		if(err) {
-			console.error("Unsuccessful query and/or update operation(s)\n" + err);
-			res.redirect("/campgrounds");
+			console.error("Unsuccessful update operation(s)\n" + err);
+			res.redirect("back");
 		}
 		else {
 			res.redirect("/campgrounds/" + campground._id);
@@ -68,10 +68,11 @@ router.put("/:id", (req, res) => {
 	});
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", isAuthorizedToModifyCampground, (req, res) => {
 	Campground.findByIdAndRemove(req.params.id, (err) => {
 		if(err) {
-			console.error("Unsuccessful query and/or delete operation(s)\n" + err);
+			console.error("Unsuccessful delete operation(s)\n" + err);
+			res.redirect("back");
 		}
 		res.redirect("/campgrounds");
 	});
