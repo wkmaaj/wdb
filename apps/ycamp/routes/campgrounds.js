@@ -50,6 +50,31 @@ router.get("/:id", (req, res) => {
 	});
 });
 
+router.get("/:id/edit", (req, res) => {
+	Campground.findById(req.params.id, (err, campground) => {
+		if(err) {
+			console.error("Unsuccessful query operation\n" + err);
+			res.redirect("/campgrounds");
+		}
+		else {
+			console.log("Successful query operation, " + campground.name + " returned");
+			res.render("campgrounds/edit", {campground: campground});
+		}
+	});
+});
+
+router.put("/:id", (req, res) => {
+	Campground.findByIdAndUpdate(req.params.id, req.body.campground, (err, campground) => {
+		if(err) {
+			console.error("Unsuccessful query and/or update operation(s)\n" + err);
+			res.redirect("/campgrounds");
+		}
+		else {
+			res.redirect("/campgrounds/" + campground._id);
+		}
+	});
+});
+
 function isLoggedIn(req, res, next) {
 	if(req.isAuthenticated()) {
 		return next();
