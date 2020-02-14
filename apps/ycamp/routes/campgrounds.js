@@ -31,7 +31,7 @@ router.post("/", isLoggedIn, (req, res) => {
 			console.log("Successful save operation:\n" + campground);
 		}
 	});
-	res.redirect("/");
+	res.redirect("/campgrounds");
 });
 
 router.get("/new", isLoggedIn, (req, res) => {
@@ -50,16 +50,9 @@ router.get("/:id", (req, res) => {
 	});
 });
 
-router.get("/:id/edit", (req, res) => {
+router.get("/:id/edit", isAuthorizedToModifyCampground, (req, res) => {
 	Campground.findById(req.params.id, (err, campground) => {
-		if(err) {
-			console.error("Unsuccessful query operation\n" + err);
-			res.redirect("/campgrounds");
-		}
-		else {
-			console.log("Successful query operation, " + campground.name + " returned");
-			res.render("campgrounds/edit", {campground: campground});
-		}
+		res.render("campgrounds/edit", {campground: campground});
 	});
 });
 
@@ -89,6 +82,31 @@ function isLoggedIn(req, res, next) {
 		return next();
 	}
 	res.redirect("/login");
+};
+
+function isAuthorizedToModifyCampground(req, res, next) {
+	if(req.isAuthenticated()) {
+		Campground.findById(req.params.id, (err, campground) => {
+			if(err) {
+				console.error("Unsuccessful query operation\n" + err);
+				res.redirect("back");
+			}
+			else {
+				console.log("Successful query operation, " + campground.name + " returned");
+				if(campground.author.username === "Admin" || ((campground.author.id) && campground.author.id.equals(req.user._id))) {
+					next();
+				}
+				else {
+					console.error("User is not authorized to access this link");
+					res.redirect("back");
+				}
+			}
+		});
+	}
+	else {
+		console.error("Request unauthenticated, user needs to login");
+		res.redirect("back");
+	}
 };
 
 module.exports = router;
