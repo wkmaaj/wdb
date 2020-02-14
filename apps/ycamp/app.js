@@ -15,7 +15,7 @@ mongoose.connect("mongodb://localhost:27017/ycamp", {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
 });
-seeds();
+// seeds();
 
 const app = express();
 app.set("view engine", "ejs");
