@@ -21,7 +21,10 @@ router.post("/", isLoggedIn, (req, res) => {
 			res.redirect("/campgrounds");
 		}
 		else {
-			req.body.comment.author = req.user.username;
+			req.body.comment.author = {
+				id: req.user._id,
+				username: req.user.username
+			};
 			Comment.create(req.body.comment, (err, comment) => {
 				if(err) {
 					console.error("Unsuccessful save operation\n" + err);
