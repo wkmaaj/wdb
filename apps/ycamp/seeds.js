@@ -27,7 +27,7 @@ function seedDb() {
 						console.log("Successfully saved campground " + cground.name);
 						Comment.create({
 							text: "Data seeded from cgrounds",
-							author: "Admin"
+							author: {username: "Admin"}
 						}, (err, comment) => {
 							if(err) {
 								console.error("Unsuccessful save operation\n" + err);
@@ -35,7 +35,7 @@ function seedDb() {
 								cground.comments.push(comment);
 								Comment.create({
 									text: "Additional comment to see how multiple comments manifest in persistence store",
-									author: "Admin"
+									author: {username: "Admin"}
 								}, (err, comment) => {
 									if(err) {
 										console.error("Unsuccessful save operation\n" + err);
