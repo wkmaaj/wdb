@@ -18,16 +18,19 @@
 					<div class="card">
 						<img src="<%= campground.image %>" alt="Image Unavailable" class="card-img-top" id="cground-img">
 						<h5 class="card-title text-center"><%= campground.name %></h5>
+					<% if(campground.author) { %>
+						<h6 class="card-subtitle mb-2 text-muted">Submitted by <%= campground.author.username %></h6>
+					<% }; %>
 						<p class="card-text px-2"><%= campground.desc %></p>
 					</div>
 					
 					<div class="card mt-3">
 						<h5 class="card-title text-left"><em>Comments:</em></h4>
-<% campground.comments.forEach((comment) => {%>
+					<% campground.comments.forEach((comment) => {%>
 						<p class="card-text">
-							<%= comment.text %> - <strong><%= comment.author %></strong>
+							<%= comment.text %> - <strong><%= comment.author.username %></strong>
 						</p>
-<% }); %>
+					<% }); %>
 						<a href="/campgrounds/<%= campground._id %>/comments/new" class="btn btn-sm btn-success mt-2">Add New Comment</a>
 					</div>
 				</div>
