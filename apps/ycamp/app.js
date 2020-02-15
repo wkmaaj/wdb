@@ -4,9 +4,8 @@ const express = require("express"),
 	passport = require("passport"),
 	LocalStrategy = require("passport-local"),
 	methodOverride = require("method-override"),
+	flash = require("connect-flash"),
 	seeds = require("./seeds"),
-	Campground = require("./models/campground"),
-	Comment = require("./models/comment"),
 	User = require("./models/user"),
 	commentsRoutes = require("./routes/comments"),
 	campgroundsRoutes = require("./routes/campgrounds"),
@@ -25,6 +24,7 @@ app.use(express.static("static"));
 app.use(express.static("../../resources/css/lib"));
 app.use(express.static("../../resources/js/lib"));
 app.use(methodOverride("_method"));
+app.use(flash());
 app.use(require("express-session")({
 	secret: "google whatever you want",
 	resave: false,
@@ -35,6 +35,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use((req, res, next) => {
 	res.locals.user = req.user;
+	res.locals.error = req.flash("error");
+	res.locals.success = req.flash("success");
 	next();
 });
 app.use("/", indexRoutes);
