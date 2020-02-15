@@ -1,6 +1,7 @@
 const express = require("express"),
 	router = express.Router(),
-	Campground = require("../models/campground");
+	Campground = require("../models/campground"),
+	mw = require("../middleware");
 
 router.get("/", (req, res) => {
 	Campground.find({}, function(err, campgrounds) {
@@ -14,7 +15,7 @@ router.get("/", (req, res) => {
 	});
 });
 
-router.post("/", isLoggedIn, (req, res) => {
+router.post("/", mw.isLoggedIn, (req, res) => {
 	Campground.create({
 		name: req.body.name,
 		image: req.body.image,
@@ -34,7 +35,7 @@ router.post("/", isLoggedIn, (req, res) => {
 	res.redirect("/campgrounds");
 });
 
-router.get("/new", isLoggedIn, (req, res) => {
+router.get("/new", mw.isLoggedIn, (req, res) => {
 	res.render("campgrounds/new");
 });
 
@@ -50,13 +51,13 @@ router.get("/:id", (req, res) => {
 	});
 });
 
-router.get("/:id/edit", isAuthorized, (req, res) => {
+router.get("/:id/edit", mw.isAuthorized, (req, res) => {
 	Campground.findById(req.params.id, (err, campground) => {
 		res.render("campgrounds/edit", {campground: campground});
 	});
 });
 
-router.put("/:id", isAuthorized, (req, res) => {
+router.put("/:id", mw.isAuthorized, (req, res) => {
 	Campground.findByIdAndUpdate(req.params.id, req.body.campground, (err, campground) => {
 		if(err) {
 			console.error("Unsuccessful update operation(s)\n" + err);
@@ -68,7 +69,7 @@ router.put("/:id", isAuthorized, (req, res) => {
 	});
 });
 
-router.delete("/:id", isAuthorized, (req, res) => {
+router.delete("/:id", mw.isAuthorized, (req, res) => {
 	Campground.findByIdAndRemove(req.params.id, (err) => {
 		if(err) {
 			console.error("Unsuccessful delete operation(s)\n" + err);
@@ -77,37 +78,5 @@ router.delete("/:id", isAuthorized, (req, res) => {
 		res.redirect("/campgrounds");
 	});
 });
-
-function isAuthorized(req, res, next) {
-	if(req.isAuthenticated()) {
-		Campground.findById(req.params.id, (err, campground) => {
-			if(err) {
-				console.error("Unsuccessful query operation using [" + req.params.id + "], see below for more info:\n" + err);
-				res.redirect("back");
-			}
-			else {
-				console.log("Successful query operation using [" + req.params.id + "], retrieved campground [" + campground.name + "]");
-				if(campground.author.username === "Admin" || ((campground.author.id) && campground.author.id.equals(req.user._id))) {
-					next();
-				}
-				else {
-					console.error("Unauthorized request, user is not authorized to access this page/link/action");
-					res.redirect("back");
-				}
-			}
-		});
-	}
-	else {
-		console.error("Unauthenticated request, request must originate from an authenticated user");
-		res.redirect("/login");
-	}
-};
-
-function isLoggedIn(req, res, next) {
-	if(req.isAuthenticated()) {
-		return next();
-	}
-	res.redirect("/login");
-};
 
 module.exports = router;
