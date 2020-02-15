@@ -13,6 +13,8 @@ const express = require("express"),
 
 mongoose.connect("mongodb://localhost:27017/ycamp", {
 	useNewUrlParser: true,
+	useFindAndModify: false,
+	useCreateIndex: true,
 	useUnifiedTopology: true
 });
 // seeds();
@@ -35,8 +37,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use((req, res, next) => {
 	res.locals.user = req.user;
-	res.locals.error = req.flash("error");
-	res.locals.success = req.flash("success");
+	res.locals.errormsg = req.flash("error");
+	res.locals.infomsg = req.flash("info");
+	res.locals.successmsg = req.flash("success");
 	next();
 });
 app.use("/", indexRoutes);
