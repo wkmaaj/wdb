@@ -41,14 +41,19 @@
 			</div>
 		</nav>
 		<div class="container-fluid text-center">
-			<% if(error && error.length > 0) { %>
+			<% if(errormsg && errormsg.length > 0) { %>
 				<div class="alert alert-danger" role="alert">
-					<%= error %>
+					<%= errormsg %>
 				</div>
 			<% }; %>
-			<% if(success && success.length > 0) { %>
+			<% if(infomsg && infomsg.length > 0) { %>
+				<div class="alert alert-info" role="alert">
+					<%= infomsg %>
+				</div>
+			<% }; %>
+			<% if(successmsg && successmsg.length > 0) { %>
 				<div class="alert alert-success" role="alert">
-					<%= success %>
+					<%= successmsg %>
 				</div>
 			<% }; %>
 		</div>
