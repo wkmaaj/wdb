@@ -50,13 +50,13 @@ router.get("/:id", (req, res) => {
 	});
 });
 
-router.get("/:id/edit", isAuthorizedToModifyCampground, (req, res) => {
+router.get("/:id/edit", isAuthorized, (req, res) => {
 	Campground.findById(req.params.id, (err, campground) => {
 		res.render("campgrounds/edit", {campground: campground});
 	});
 });
 
-router.put("/:id", isAuthorizedToModifyCampground, (req, res) => {
+router.put("/:id", isAuthorized, (req, res) => {
 	Campground.findByIdAndUpdate(req.params.id, req.body.campground, (err, campground) => {
 		if(err) {
 			console.error("Unsuccessful update operation(s)\n" + err);
@@ -68,7 +68,7 @@ router.put("/:id", isAuthorizedToModifyCampground, (req, res) => {
 	});
 });
 
-router.delete("/:id", isAuthorizedToModifyCampground, (req, res) => {
+router.delete("/:id", isAuthorized, (req, res) => {
 	Campground.findByIdAndRemove(req.params.id, (err) => {
 		if(err) {
 			console.error("Unsuccessful delete operation(s)\n" + err);
@@ -78,36 +78,36 @@ router.delete("/:id", isAuthorizedToModifyCampground, (req, res) => {
 	});
 });
 
-function isLoggedIn(req, res, next) {
-	if(req.isAuthenticated()) {
-		return next();
-	}
-	res.redirect("/login");
-};
-
-function isAuthorizedToModifyCampground(req, res, next) {
+function isAuthorized(req, res, next) {
 	if(req.isAuthenticated()) {
 		Campground.findById(req.params.id, (err, campground) => {
 			if(err) {
-				console.error("Unsuccessful query operation\n" + err);
+				console.error("Unsuccessful query operation using [" + req.params.id + "], see below for more info:\n" + err);
 				res.redirect("back");
 			}
 			else {
-				console.log("Successful query operation, " + campground.name + " returned");
+				console.log("Successful query operation using [" + req.params.id + "], retrieved campground [" + campground.name + "]");
 				if(campground.author.username === "Admin" || ((campground.author.id) && campground.author.id.equals(req.user._id))) {
 					next();
 				}
 				else {
-					console.error("User is not authorized to access this link");
+					console.error("Unauthorized request, user is not authorized to access this page/link/action");
 					res.redirect("back");
 				}
 			}
 		});
 	}
 	else {
-		console.error("Request unauthenticated, user needs to login");
-		res.redirect("back");
+		console.error("Unauthenticated request, request must originate from an authenticated user");
+		res.redirect("/login");
 	}
+};
+
+function isLoggedIn(req, res, next) {
+	if(req.isAuthenticated()) {
+		return next();
+	}
+	res.redirect("/login");
 };
 
 module.exports = router;
