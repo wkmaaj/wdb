@@ -21,6 +21,10 @@ h1 {
 	text-align: center;
 	width: 30%;
 }
+.comment-btn {
+	height: auto;
+	width: auto;
+}
 .hyper-btn {
 	width: 18rem;
 }
@@ -38,6 +42,14 @@ h1 {
 #cgrounds-row {
 	display: flex;
 	flex-wrap: wrap;
+}
+#comment-title {
+	color: rgb(221, 166, 25);
+	font-family: 'Monofett', cursive;
+	font-size: 4rem;
+}
+#comment-title-border {
+	border-bottom: 5px dotted rgb(221, 166, 25);
 }
 #index {
 	color: darkgreen;
