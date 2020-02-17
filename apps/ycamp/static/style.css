@@ -16,6 +16,10 @@ h1 {
 	font-weight: bold;
 }
 
+.card > .card-header {
+	font-family: 'Permanent Marker', cursive;
+	font-size: 1.75rem;
+}
 .cgrounds-new-form {
 	margin: 0 auto;
 	text-align: center;
