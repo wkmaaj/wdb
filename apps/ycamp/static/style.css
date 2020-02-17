@@ -1,0 +1,77 @@
+body {
+	/* src = https://uigradients.com/#Zinc */
+	background: #ADA996;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+	/* src = https://uigradients.com/#SunontheHorizon */
+	/*background: #fceabb;  /* fallback for old browsers */
+	/*background: -webkit-linear-gradient(to right, #f8b500, #fceabb);  /* Chrome 10-25, Safari 5.1-6 */
+	/*background: linear-gradient(to right, #f8b500, #fceabb); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+	padding: 60px 0;
+}
+h1 {
+	font-size: 5rem;
+	font-weight: bold;
+}
+
+.card > .card-header {
+	font-family: 'Permanent Marker', cursive;
+	font-size: 1.75rem;
+}
+.cgrounds-new-form {
+	margin: 0 auto;
+	text-align: center;
+	width: 30%;
+}
+.comment-btn {
+	height: auto;
+	width: auto;
+}
+.hyper-btn {
+	width: 18rem;
+}
+.inline-form {
+	display: inline;
+}
+
+#cground-img {
+	width: 100%;
+}
+#cgrounds {
+	color: darkolivegreen;
+	font-family: 'Permanent Marker', cursive;
+}
+#cgrounds-row {
+	display: flex;
+	flex-wrap: wrap;
+}
+#comment-title {
+	color: rgb(221, 166, 25);
+	font-family: 'Monofett', cursive;
+	font-size: 4rem;
+}
+#comment-title-border {
+	border-bottom: 5px dotted rgb(221, 166, 25);
+}
+#index {
+	color: darkgreen;
+	font-family: 'Monofett', cursive;
+}
+.trademark {
+	font-family: 'Permanent Marker', cursive;
+	font-size: 1.25rem;
+	font-weight: bold;
+}
+
+@media(max-width: 1041px) {
+	i.fas.fa-campground {
+		display: none;
+	}
+
+	#cgrounds {
+		font-size: 4rem;
+		text-align: center;
+	}
+}

@@ -3,6 +3,7 @@ const request = require('request');
 
 const app = express();
 app.use(express.static("static"));
+app.use(express.static("../../resources/css/lib"));
 app.set("view engine", "ejs");
 
 app.get("/", function(req, res) {

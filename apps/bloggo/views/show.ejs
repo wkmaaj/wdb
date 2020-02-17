@@ -1,0 +1,18 @@
+<%- include("partials/header") %>
+		<div class="container-fluid">
+			<div class="container-fluid text-center border border-dark rounded mb-4">
+				<h1 class="display-2" id="show-blog-title"><%= blog.title %></h1>
+				<img src="<%= blog.image %>" alt="Image Unavailable" class="img-fluid rounded mb-4">
+				<div class="container-fluid py-2 mb-4" id="show-blog-body">
+					<p><%- blog.body %></p>
+					<p>
+						<span id="hide-blog-created"><%= blog._id %> created on <%= blog.created.toDateString() %></span>
+					</p>
+				</div>
+				<a href="/blogs/<%= blog._id %>/edit" class="ui positive basic button">Edit</a>
+				<form action="/blogs/<%= blog._id %>?_method=DELETE" method="POST" id="show-delete-inline">
+					<button class="ui inverted negative basic button">Delete</button>
+				</form>
+			</div>
+		</div>
+<%- include("partials/footer") %>

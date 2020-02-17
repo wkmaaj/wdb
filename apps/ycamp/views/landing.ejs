@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="/bootstrap-4.1.3.min.css" type="text/css">
+		<link rel="stylesheet" href="/fontawesome/css/all-5.12.0.min.css" type="text/css">
+		<link rel="stylesheet" href="/googlefonts/gfonts.css" type="text/css">
+		<link rel="stylesheet" href="/style.css" type="text/css">
+		<link rel="stylesheet" href="/landing.css" type="text/css">
+		<title>YelpCamp</title>
+		<script src="/modernizr-2.8.3.min.js" type="text/javascript" async></script>
+	</head>
+	<body>
+		<div class="container-fluid text-center">
+			<% if(errormsg && errormsg.length > 0) { %>
+				<div class="alert alert-danger" role="alert">
+					<%= errormsg %>
+				</div>
+			<% }; %>
+			<% if(infomsg && infomsg.length > 0) { %>
+				<div class="alert alert-info" role="alert">
+					<%= infomsg %>
+				</div>
+			<% }; %>
+			<% if(successmsg && successmsg.length > 0) { %>
+				<div class="alert alert-success" role="alert">
+					<%= successmsg %>
+				</div>
+			<% }; %>
+		</div>
+		<div id="landing-header">
+			<h1>Welcome to YelpCamp!</h1>
+			<a href="/campgrounds" class="btn btn-lg btn-success">View All Campgrounds</a>
+		</div>
+		<ul class="slideshow">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+<%- include("partials/footer") %>

@@ -1,0 +1,71 @@
+<%- include("../partials/header") %>
+		<div class="container-fluid">
+			<header class="jumbotron bg-warning text-center">
+				<div class="container">
+					<h1 id="cgrounds"><%= campground.name %></h1>
+				</div>
+			</header>
+			<div class="d-flex flex-row justify-content-center">
+				<div class="col-md-3 d-none d-md-block">
+					<p class="lead">YelpCamp</p>
+					<div class="list-group">
+						<li class="list-group-item list-group-item-success">Info 1</li>
+						<li class="list-group-item list-group-item-secondary">Info 2</li>
+						<li class="list-group-item list-group-item-warning">Info 3</li>
+					</div>
+				</div>
+				<div class="col-md-9">
+					<div class="card text-center">
+						<img src="<%= campground.image %>" alt="Image Unavailable" class="card-img-top" id="cground-img">
+						<div class="card-header text-right pr-5">
+							<%= campground.price.currency %> <%= campground.price.value %>
+						</div>
+						<div class="card-body">
+							<h5 class="card-title"><%= campground.name %></h5>
+							<% if(campground.author) { %>
+								<h6 class="card-subtitle mb-2 text-muted">Submitted by <%= campground.author.username %></h6>
+							<% }; %>
+							<p class="card-text px-2"><%= campground.desc %></p>
+							<% if((user) && (campground.author.username === "Admin" || ((campground.author.id) && campground.author.id.equals(user._id)))) { %>
+								<div class="d-flex flex-row justify-content-around">
+									<a href="/campgrounds/<%= campground._id %>/edit" class="card-link btn btn-warning hyper-btn">Edit</a>
+									<form action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST" class="inline-form">
+										<button class="btn btn-danger hyper-btn">Delete</button>
+									</form>
+								</div>
+							<% }; %>
+						</div>
+					</div>
+					<div class="card mt-3 bg-secondary text-light">
+						<div class="card-body pt-0 px-0">
+							<div class="d-flex flex-row mb-4" id="comment-title-border">
+								<div class="col-6 d-flex flex-column align-items-center">
+									<h5 class="card-title my-2" id="comment-title">Comments</h5>
+								</div>
+								<div class="col-6 d-flex flex-column justify-content-center align-items-end pr-0">
+									<a href="/campgrounds/<%= campground._id %>/comments/new" class="card-link btn btn-success hyper-btn">Add New Comment</a>
+								</div>
+							</div>
+							<% campground.comments.forEach((comment) => {%>
+								<div class="d-flex flex-row align-items-center p-2 my-1">
+									<div class="col-9">
+										<p class="card-text"><strong><%= comment.author.username %></strong> - <%= comment.text %></p>
+									</div>
+									<div class="col-3">
+										<% if((user) && (comment.author.username === "Admin" || ((comment.author.id) && comment.author.id.equals(user._id)))) { %>
+											<div class="d-flex flex-row justify-content-around">
+												<a href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit" class="btn btn-sm btn-warning">Edit</a>
+												<form action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE" class="inline-form" method="POST">
+													<button class="btn btn-sm btn-danger">Delete</button>
+												</form>
+											</div>
+										<% }; %>
+									</div>
+								</div>
+							<% }); %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+<%- include("../partials/footer") %>

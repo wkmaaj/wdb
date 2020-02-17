@@ -1,5 +1,5 @@
 <%- include("partials/header") %>
-		<h1>Not Found</h1>
-		<p>No movies containing the term "<%= search %>" were found.</p>
+		<h3 id="notFound">Not Found</h3>
+		<p>No movies containing the term <span id="notFoundTerm"><%= search %></span> were found.</p>
 <%- include("partials/searchAgain") %>
 <%- include("partials/footer") %>
