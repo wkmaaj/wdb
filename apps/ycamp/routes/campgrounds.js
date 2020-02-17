@@ -20,6 +20,10 @@ router.post("/", mw.isLoggedIn, (req, res) => {
 		name: req.body.name,
 		image: req.body.image,
 		desc: req.body.desc,
+		price: {
+			currency: req.body.currency,
+			value: req.body.value
+		},
 		author: {
 			id: req.user._id,
 			username: req.user.username
@@ -64,6 +68,7 @@ router.put("/:id", mw.isAuthorized, (req, res) => {
 			res.redirect("back");
 		}
 		else {
+			req.flash("info", "Successfully updated " + campground.name + " page");
 			res.redirect("/campgrounds/" + campground._id);
 		}
 	});
