@@ -17,6 +17,9 @@
 				<div class="col-md-9">
 					<div class="card text-center">
 						<img src="<%= campground.image %>" alt="Image Unavailable" class="card-img-top" id="cground-img">
+						<div class="card-header text-right pr-5">
+							<%= campground.price.currency %> <%= campground.price.value %>
+						</div>
 						<div class="card-body">
 							<h5 class="card-title"><%= campground.name %></h5>
 							<% if(campground.author) { %>
