@@ -3,7 +3,11 @@ const express = require("express"),
 	passport = require("passport"),
 	User = require("../models/user");
 
-router.get("/:var((home|index)(.html|.ejs)?)?", (req, res) => {
+router.get("/:var((home|index|about)(.html|.ejs)?)?", (req, res) => {
+	res.render("about");
+});
+
+router.get("/landing", (req, res) => {
 	res.render("landing");
 });
 
@@ -15,10 +19,12 @@ router.post("/register", (req, res) => {
 	User.register(new User({username: req.body.username}), req.body.password, (err, user) => {
 		if(err) {
 			console.error("Unsuccessful registration operation\n" + err);
-			return res.render("register");
+			req.flash("error", err.message);
+			res.redirect("/register");
 		}
 
 		passport.authenticate("local")(req, res, () => {
+			req.flash("success", "Welcome " + user.username + " and thank you for signing up!");
 			res.redirect("/campgrounds");
 		});
 	});
