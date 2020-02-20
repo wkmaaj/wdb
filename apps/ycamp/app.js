@@ -11,7 +11,7 @@ const express = require("express"),
 	campgroundsRoutes = require("./routes/campgrounds"),
 	indexRoutes = require("./routes/index");
 
-mongoose.connect("mongodb://localhost:27017/ycamp", {
+mongoose.connect("mongodb://192.168.99.100:27017/ycamp", {
 	useNewUrlParser: true,
 	useFindAndModify: false,
 	useCreateIndex: true,
