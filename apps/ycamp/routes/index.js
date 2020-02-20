@@ -3,11 +3,11 @@ const express = require("express"),
 	passport = require("passport"),
 	User = require("../models/user");
 
-router.get("/:var((home|index|about)(.html|.ejs)?)?", (req, res) => {
+router.get("/:var((index|about)(.html|.ejs)?)", (req, res) => {
 	res.render("about");
 });
 
-router.get("/landing", (req, res) => {
+router.get("/:var((home|landing)(.html|.ejs)?)?", (req, res) => {
 	res.render("landing");
 });
 
