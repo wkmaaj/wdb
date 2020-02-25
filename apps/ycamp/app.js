@@ -11,7 +11,8 @@ const express = require("express"),
 	campgroundsRoutes = require("./routes/campgrounds"),
 	indexRoutes = require("./routes/index");
 
-mongoose.connect("mongodb://localhost:27017/ycamp", {
+// mongoose.connect("mongodb://localhost:27017/ycamp", {
+mongoose.connect("mongodb+srv://admin:YwtVhenZippHRP6@wdb-cluster-zncbn.gcp.mongodb.net/ycamp?retryWrites=true&w=majority", {
 	useNewUrlParser: true,
 	useFindAndModify: false,
 	useCreateIndex: true,
