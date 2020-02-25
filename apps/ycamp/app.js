@@ -5,28 +5,32 @@ const express = require("express"),
 	LocalStrategy = require("passport-local"),
 	methodOverride = require("method-override"),
 	flash = require("connect-flash"),
+	dotenv = require("dotenv"),
 	seeds = require("./seeds"),
 	User = require("./models/user"),
 	commentsRoutes = require("./routes/comments"),
 	campgroundsRoutes = require("./routes/campgrounds"),
 	indexRoutes = require("./routes/index");
 
-// mongoose.connect("mongodb://localhost:27017/ycamp", {
-mongoose.connect("mongodb+srv://admin:YwtVhenZippHRP6@wdb-cluster-zncbn.gcp.mongodb.net/ycamp?retryWrites=true&w=majority", {
+dotenv.config();
+mongoose.connect(process.env.DB_URL, {
 	useNewUrlParser: true,
 	useFindAndModify: false,
 	useCreateIndex: true,
 	useUnifiedTopology: true
 });
-// seeds();
+if(process.env.SEED_DB) {
+	seeds();
+}
 
 const app = express();
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("static"));
 app.use(express.static("../../resources/css/lib"));
 app.use(express.static("../../resources/img"));
 app.use(express.static("../../resources/js/lib"));
+
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 app.use(flash());
 app.use(require("express-session")({
@@ -52,6 +56,6 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.listen(3000, function() {
-	console.log("YelpCamp up and running, currently listening on port 3000");
+app.listen(process.env.PORT, function() {
+	console.log(`YelpCamp running and listening on port ${process.env.PORT}`);
 });
