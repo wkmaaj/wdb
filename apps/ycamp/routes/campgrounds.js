@@ -9,7 +9,9 @@ router.get("/", (req, res) => {
 			console.error("Unsuccessful query operation\n" + err);
 		}
 		else {
-			// console.log("Successful query operation, " + campgrounds.length + " campgrounds returned");
+			if(process.env.DEBUG_LOG) {
+				console.log("Successful query operation, " + campgrounds.length + " campgrounds returned");
+			}
 			res.render("campgrounds/index", {campgrounds: campgrounds});
 		}
 	});
